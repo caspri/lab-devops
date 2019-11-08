@@ -22,14 +22,6 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps{
-        script {
-            sh "docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
-        }
-      }
-    }
-
     stage('Upload Image') {
       steps{
         script {
@@ -43,7 +35,7 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         script {
-          sh "sudo docker rmi $registry:$BUILD_NUMBER"
+          sh "docker rmi $registry:$BUILD_NUMBER"
         }
       }
     }
