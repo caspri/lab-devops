@@ -11,4 +11,4 @@
 
 
      - name: create docker image
-       shell: docker run -d  -p 5000:5000 chr93/trg_demo:latest
+       shell: docker run -d -name flask_demo -p 5000:5000 chr93/trg_demo:latest
