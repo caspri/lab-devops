@@ -2,11 +2,9 @@ pipeline {
   environment {
     registry = "chr93/trg_demo"
     registryCredential = 'docker-hub-credentials'
+    DockerImage = ''
   }
   agent any
-  triggers {
-    pollSCM '* * * * *'
-    }
   stages {
     stage('Pull from github') {
       steps{
@@ -17,7 +15,15 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          docker.build registry + ":$BUILD_NUMBER"
+        DockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+
+    stage('Test') {
+      steps{
+         script {
+            sh "docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
         }
       }
     }
