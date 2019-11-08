@@ -25,7 +25,7 @@ pipeline {
     stage('Test') {
       steps{
         script {
-            sh "docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
+            sh "sudo docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
         }
       }
     }
@@ -43,7 +43,7 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         script {
-          sh "docker rmi $registry:$BUILD_NUMBER"
+          sh "sudo docker rmi $registry:$BUILD_NUMBER"
         }
       }
     }
