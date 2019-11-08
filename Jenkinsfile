@@ -24,7 +24,7 @@ pipeline {
     stage('Test') {
       steps{
         script {
-          sh "docker run $registry::v$BUILD_NUMBER$tag test"
+          sh "docker run $registry:v$BUILD_NUMBER$tag test"
         }
       }
     }
@@ -42,7 +42,7 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         script {
-          sh "docker rmi $registry::v$BUILD_NUMBER$tag"
+          sh "docker rmi $registry:v$BUILD_NUMBER$tag"
         }
       }
     }
