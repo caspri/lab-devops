@@ -3,8 +3,13 @@
   become_user: root
   tasks:
      - name: stop previous version docker
-       docker_container:
-        name: flask_app
-        image: chr93/trg_demo:latest
-        shell: docker run -d --name flask_demo -p 5000:5000 chr93/trg_demo:latest
+       shell: docker stop flask_demo
+     - name: remove stopped container
+       shell: docker rm -f flask_demo
+     - name: remove docker images
+       shell: docker image rm -f chr93/trg_demo:latest
+
+
+     - name: create docker image
+       shell: docker run -d --name flask_demo -p 5000:5000 chr93/trg_demo:latest
 
