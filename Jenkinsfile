@@ -20,19 +20,11 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps{
-         script {
-            sh "docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
-        }
-      }
-    }
-
     stage('Upload Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
+          DockerImage.push()
           }
         }
       }
