@@ -25,7 +25,7 @@ pipeline {
     stage('Test') {
       steps{
         script {
-            sh "docker run $registry:$BUILD_NUMBER test"
+            sh "docker run -p 5000:5000 $registry:$BUILD_NUMBER test"
         }
       }
     }
