@@ -2,7 +2,7 @@
 - hosts: localhost
   become_user: root
   tasks:
-     - name: stop previous version docker
+     - name: stop container
        shell: docker stop flask_demo
      - name: remove stopped container
        shell: docker rm -f flask_demo
@@ -11,5 +11,4 @@
 
 
      - name: create docker image
-       shell: docker run -d --name flask_demo -p 5000:5000 chr93/trg_demo:latest
-
+       shell: docker run -d  -p 5000:5000 chr93/trg_demo:latest
