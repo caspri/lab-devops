@@ -24,7 +24,7 @@ pipeline {
     stage('Test') {
       steps{
         script {
-          sh "docker run $registry:$tag test"
+          sh "docker run $registry::v$BUILD_NUMBER$tag test"
         }
       }
     }
