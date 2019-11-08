@@ -21,14 +21,6 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps{
-        script {
-          sh "docker run $registry:v$BUILD_NUMBER$tag test"
-        }
-      }
-    }
-
     stage('Upload Image') {
       steps{
         script {
