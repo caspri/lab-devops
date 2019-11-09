@@ -1,0 +1,42 @@
+Triggered by push of chr93/trg_demo to DockerHub@registry.hub.docker.com
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/trg_demo2
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caspri/lab-devops.git # timeout=10
+Fetching upstream changes from https://github.com/caspri/lab-devops.git
+ > git --version # timeout=10
+ > git fetch --tags --progress -- https://github.com/caspri/lab-devops.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 5a41fdc506e0a5ecb010c59f0f9e946e0d682d98 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5a41fdc506e0a5ecb010c59f0f9e946e0d682d98 # timeout=10
+Commit message: "general"
+ > git rev-list --no-walk 762ec966477544cee4d2da54a902a65788b46f94 # timeout=10
+[trg_demo2] $ /usr/bin/ansible-playbook /var/lib/jenkins/workspace/trg_demo2/main.yml -f 5
+[WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [stop container] **********************************************************
+changed: [localhost]
+
+TASK [remove stopped container] ************************************************
+changed: [localhost]
+
+TASK [remove docker images] ****************************************************
+changed: [localhost]
+
+TASK [create docker image] *****************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Finished: SUCCESS
